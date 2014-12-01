@@ -1,0 +1,13 @@
+﻿section{
+	float: right;
+	width: 725px;
+	padding-left:20px;
+	padding-right:20px;
+	margin: 0 0 20px 0px;
+    color:WhiteSmoke;
+}
+
+section article
+{
+    padding-top:50px;
+}
