@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" type="text/css" href="styles/aside.css" />
+    <link rel="stylesheet" type="text/css" href="styles/body.css" />
+    <link rel="stylesheet" type="text/css" href="styles/footer.css" />
+    <link rel="stylesheet" type="text/css" href="styles/global.css" />
+    <link rel="stylesheet" type="text/css" href="styles/header.css" />
+    <link rel="stylesheet" type="text/css" href="styles/section_article.css" />
+    <link rel="stylesheet" type="text/css" href="styles/nav.css" />
+    <!-- jQuery library (served from Google) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <header id = "principal">
+        </header>
+        <!-- Start Animation Code from html5maker.com -->
+        <iframe height="30" width="996" src="http://cdn.html5maker.com/0cbd2c016419601b07fae8a65e263c9b9cb2c021eaa5.html" frameborder="10" scrolling="no" allowTransparency="true"></iframe>
+        <!-- End Animation Code -->
+        <nav>
+            <ul>
+                <li><a href="Principal.aspx"><img src="images/BTN_pagPrincipal.png" alt="Principal" /></a></li>
+                <li><a href="Quienes.aspx"><img src="images/BTN_QuienesSomos.png" alt="Quienes" /></a></li>
+                <li><a href="Clientes.aspx"><img src="images/BTN_Clientes.png" alt="Clientes" /></a></li>
+                <li><a href="Servicios.aspx"><img src="images/BTN_Servicios.png" alt="Servicios" /></a></li>
+                <li><a href="Productos.aspx"><img src="images/BTN_Productos.png" alt="Productos" /></a></li>
+                <li><a href="Casos.aspx"><img src="images/BTN_CasosExito.png" alt="CasosExito" /></a></li>
+                <li><a href="Contacto.aspx"><img src="images/BTN_Contactos.png" alt="Contactos" /></a></li>
+                <li><a href="Socios.aspx"><img src="images/BTN_Socios.png" alt="Socios" /></a></li>
+            </ul>
+        </nav>
+        <aside>
+        <div id ="image"><img src="images/noticias_03.png" alt="Noticias"/></div>
+             <marquee id="iescroller" direction="up"  scrollamount="2" scrolldelay="100"; background-color: transparent;>
+                <div id="noticia1"><span style="color:white">Chespirito es velado en Televisa</span></div><span class = "not1"><a href="https://mx.noticias.yahoo.com/trasladan-cuerpo-chespirito-ciudad-m-xico-151303467.html/">[Leer más...]</a></span>
+                 <br />
+                 <br />
+                <div id="noticia2"><span style="color:white">Luna luce halo para los yucatecos en la Noche de las Estrellas</span></div><span class = "not2"><a href="https://mx.noticias.yahoo.com/luna-luce-halo-yucatecos-noche-estrellas-030834717.html/">[Leer más...]</a></span>
+                 <br />
+                 <br />
+                  <div id="noticia3"><span style="color:white">Black Friday, la tradición anglosajona que se cuela en el e-commerce español</span></div><span class = "not2"><a href="http://www.abc.es/tecnologia/redes/20141128/abci-black-friday-incentiva-compra-201411271729.html/">[Leer más...]</a></span>
+            </marquee>
+            <br /><br />
+            <div id ="image2"><a href="Panel.aspx"><img src="images/CON_Parnet.png" alt="CON"/></a></div>
+            <table>
+                <tr><td><img src="images/Areas.png" alt="Areas" /></td></tr>
+                <tr><td><a href="Certificaciones.aspx" class="mainmenu" /><img src="images/BTN_Certificaciones.png" alt="Certificaciones" /></a></td></tr>
+                <tr><td><a href="Telecomunicaciones.aspx" class="mainmenu" /><img src="images/BTN_Telecomunicaciones.png" alt="Telecomunicaciones" /></a></td></tr>
+                <tr><td><a href="Redes.aspx" class="mainmenu" /><img src="images/BTN_RedesElect.png" alt="Redes" /></a></td></tr>
+                <tr><td><a href="Circuito.aspx" class="mainmenu" /><img src="images/BTN_CircuitoCerrado.png" alt="Circuito" /></a></td></tr>
+                <tr><td><a href="Corriente.aspx" class="mainmenu" /><img src="images/BTN_CorrienteReg.png" alt="Corriente" /></a></td></tr>
+                <tr><td><a href="DataCenter.aspx" class="mainmenu" /><img src="images/BTN_DataCenter.png" alt="DateCenter" /></a></td></tr>
+                <tr><td><a href="Fibra.aspx" class="mainmenu" /><img src="images/BTN_FibraOpt.png" alt="Fibra" /></a></td></tr>
+                <tr><td><a href="Cables.aspx" class="mainmenu" /><img src="images/BTN_CablesEst.png" alt="Cables" /></a></td></tr>
+                <tr><td><a href="Polizas.aspx" class="mainmenu" /><img src="images/BTN_Polizas.png" alt="Polizas" /></a></td></tr>
+                <tr><td><a href="Outsourcing.aspx" class="mainmenu" /><img src="images/BTN_Outsourcing.png" alt="Outsourcing" /></a></td></tr>
+                <tr><td><a href="Administracion.aspx" class="mainmenu" /><img src="images/BTN_Administracion.png" alt="Administracion" /></a></td></tr>
+            </table>
+            <br /><br /><br /><br />
+            <div id ="marcas"><img src="images/marcas_prov_03.png" /></div>
+                <marquee id="iescroller2" direction="up"  scrollamount="2" scrolldelay="100"; background-color: transparent;>
+                    <div id="marcas1"><span style="color:white">PANDUIT es el lider mundial en el diseño y fabricacion de productos para cableado y comunicaciones</span>
+                    </div><span class = "not1"><a href="http://www.panduit.com/es/home">[Leer más...]</a></span>
+                     <br />
+                     <br />
+                    <div id="marcas2"><span style="color:white">Cisco Systems es el lider mundial en redes para Internet</span>
+                    </div><span class = "not2"><a href="http://www.cisco.com">[Leer más...]</a></span>
+                </marquee>
+            <br /><br /><br /><br />
+             <p><img src="images/ICO_1.png" alt="Logged" />  Conectados: 1<br /><img src="images/ICO_2.png" alt="Visited" />  Visitas: <a href="http://www.contadorvisitasgratis.com" title="contador de visitas para blogger"><img src="http://counter3.allfreecounter.com/private/contadorvisitasgratis.php?c=d91811a527409faae04d4c209ab7b345" border="0" title="contador de visitas para blogger" alt="contador de visitas para blogger"></a><br />© Copyright 2014</p>
+        </aside>
+        <article>
+            <form id="form1" runat="server">
+                <div>
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </form>
+        </article>
+        <footer>
+            <div class="footer"><p><a href="Principal.aspx">Página Principal</a> | <a href="Quienes.aspx">¿Quiénes Somos?</a> | <a href="Clientes.aspx">Clientes</a> | <a href="Servicios.aspx">Servicios</a> | <a href="Productos.aspx">Productos</a> | <a href="Casos.aspx">Casos De Éxito</a> | <a href="Contacto.aspx">Contacto</a> | <a href="Soporte.aspx">Soporte</a></p></div>
+        </footer>
+</body>
+</html>

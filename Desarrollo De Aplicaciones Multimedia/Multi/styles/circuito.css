@@ -1,0 +1,23 @@
+#marcador {
+    background: url(../images/marcador_pag_03.png) top no-repeat;
+    background-position:200px;
+    text-align: left;
+    color: #2e3a45;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+text-align : justify; 
+font-size: medium; 
+font-family: Arial, Helvetica, sans-serif;
+}
+
+#cam2 {
+    padding-left:105px;
+    padding-top: 50px;
+}
+
+#cam1 {
+    padding-top: 50px;
+}
