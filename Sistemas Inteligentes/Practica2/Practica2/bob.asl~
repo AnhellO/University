@@ -1,0 +1,145 @@
+// Agent bob in project Practica2.mas2j
+
+
+/* Initial beliefs and rules */
+
+/* The main program */
+
+yo(bob).
+
+/* Relaciones paternales */
+
+es_padre_de(fred,erik).
+es_padre_de(fred,tom).
+es_padre_de(erik,eve).
+es_padre_de(bob,liz).
+es_padre_de(john,fred).
+es_padre_de(john,karl).
+
+/* Relaciones maternales */
+es_madre_de(liz,erik).
+es_madre_de(liz,tom).
+es_madre_de(sally,liz).
+es_madre_de(ann,fred).
+es_madre_de(ann,karl).
+es_madre_de(july,eve).
+
+/* Relaciones de hermanos
+Nota: Segun el diccionario consideramos hermanos aquellos que comparten un padre o una madre.
+*/
+
+//Primero suponemos que comparten solo padre y no son la misma persona
+es_hermano_de(X,Y) :-
+	es_padre_de(Z,X)
+	& es_padre_de(Z,Y)
+	& es_madre_de(W,X)
+	& not es_madre_de(W,Y)
+	& not X=Y.
+
+
+//Segundo suponemos que comparten solo madre y no son la misma persona
+es_hermano_de(X,Y) :-
+	es_madre_de(Z,X)
+	& es_madre_de(Z,Y)
+	& es_padre_de(W,X)
+	& not es_padre_de(W,Y)
+	& not X=Y.
+
+
+//Tercero suponemos que comparten padre y madre y no son la misma persona
+
+es_hermano_de(X,Y) :- 
+	es_padre_de(Z,X)
+	& es_padre_de(Z,Y)
+	& es_madre_de(W,X)
+	& es_madre_de(W,Y)
+	& not X=Y.
+
+/*
+NOTA: Fijaros que el hecho de que tengan padre o madre distinta incluye las situaciones 
+de padres divorciados o de horfandad 
+
+Relaciones de parentesco 
+Modificamos las anteriores para diferenciar explicitamente entre antepasados y descendientes. 
+Comparar las soluciones con la version anterior.
+*/
+
+// Primero reglas para "X es_antepasado_de Y"
+es_antepasado_de(X,Y) :- 
+	es_padre_de(X,Y).
+
+es_antepasado_de(X,Y) :- 
+	es_madre_de(X,Y).
+
+es_antepasado_de(X,Y) :- 
+	es_padre_de(X,Z)
+	& es_antepasado_de(Z,Y).
+	
+es_antepasado_de(X,Y) :- 
+	es_madre_de(X,Z)
+	& es_antepasado_de(Z,Y).
+
+es_antepasadoIndirecto_de(X,Y) :- 
+	es_hermano_de(X,Z)
+	& es_antepasado_de(Z,Y).
+	
+// Luego reglas para "X es_descendiente_de Y"
+es_descendiente_de(X,Y) :- 
+	es_padre_de(Y,X).
+
+es_descendiente_de(X,Y) :- 
+	es_madre_de(Y,X).
+
+es_descendiente_de(X,Y) :- 
+	es_padre_de(Y,Z)
+	& es_descendiente_de(X,Z).
+
+es_descendiente_de(X,Y) :- 
+	es_madre_de(Y,Z)
+	& es_descendiente_de(X,Z).
+
+// Por œltimo las reglas para "X es_pariente_de Y"
+es_pariente_de(X,Y) :-
+	es_antepasado_de(X,Y)
+	& not X=Y.
+
+es_pariente_de(X,Y) :-
+	es_antepasadoIndirecto_de(X,Y)
+	& not X=Y.
+
+es_pariente_de(X,Y) :-
+	es_descendiente_de(X,Y)
+	& not X=Y.
+
+/* Initial goals */
+
+!start.
+
++!start : true <- .print("Hola Tom, como estas?");
+				  .send(tom,tell,hello).
+
+/* Plans */
+
++preguntar_por_familia_tom[source(T)] <- .print("Bien, gracias amigo. Que tal tu familia??");
+										.send(T,tell,preguntar_por_familia_bob).
+										
++nombre_hija_tom[source(T)] <- .print("Muy bien, gracias. ¿Tienes hijos ", T, "?");
+						        .send(tom,tell,nombre_hija_bob).
+
++nombre_hermanos_tom[source(T)] : yo(bob) & es_padre_de(bob,Liz) & Liz == liz
+							<- if(.empty(Liz)) {
+								.print("No tengo hijas. Tu tienes hermanos??");
+								.send(T,tell,nombre_esposa_bob);
+							} else {
+								.print("Si, mi hija se llama ",Liz, ". Tienes hermanos ", T, "??");
+								.send(T,tell,nombre_esposa_bob);
+							}.
+							
++adios_tom[source(T)] : es_padre_de(X,Y) & es_madre_de(Z,Y)
+					  <- if(.empty(Z)) {
+					  	.print("No tengo esposa ",T);
+						.send(T,tell,adios_bob);
+					  } else {
+					  	.print(Z, " está muy bien, gracias ",T, "!!!. Bueno amigo, me tengo que ir, hasta luego!!!");
+						.send(T,tell,adios_bob);
+					  }.

@@ -1,0 +1,37 @@
+/* Jason Project */
+/*
+
+Autor: Angel Santiago Jaime Zavala
+Práctica 2. Sistemas Inteligentes
+http://github.com/AnhellO
+
+1.- Para está práctica se utilizo la misma base de conocimientos de relaciones
+familiares que se venía utilizando en las clases prácticas, sin alterar ningun
+elemento de la BC salvo el hecho yo(X). para cada agente
+2.- Se realizó un intercambio de mensajes con 5 consultas a la BC entre ambos
+agentes
+3.- Para el ejemplo propuesto en está práctica, a pesar de que los agentes como
+tal, son familiares de acuerdo a la BC, se da por hecho que no se conocen, esto
+solo para cuestiones prácticas
+4.- Para los estados de ánimo solamente agregué un nuevo hecho a la BC:
+estado_de_animo(X).
+*/
+
+
+MAS practica2 {
+
+
+
+    infrastructure: Centralised
+
+
+
+    agents:
+
+        bob;
+
+        tom;
+
+}
+
+
