@@ -1,0 +1,33 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_60" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:85:p, par l:::p {seq {comp LblUser:::p:108:p, space s:::p, comp TxtUser:::p:214:p}, seq {comp LblPass:::p:108:p, space s:::p, comp PswPass:::::x}}, space ::80:x}}"
+			"$verticalGroup": "par l {seq l {space :p:125:p, par l:::p {comp LblUser::::38:x, comp TxtUser::::38:x}, space s:::p, par l:::p {comp LblPass::::38:x, comp PswPass::::38:x}, space ::116:x}}"
+		} ) {
+			name: "this"
+			"foreground": sfield java.awt.Color lightGray
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "LblUser"
+				"text": "Usuario:"
+				"font": &Font0 new java.awt.Font( "Tahoma", 1, 12 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "LblPass"
+				"text": "Contraseña:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "TxtUser"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "PswPass"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 505, 335 )
+		} )
+	}
+}

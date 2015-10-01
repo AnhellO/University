@@ -1,0 +1,46 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_60" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::89:x, comp btnExit:::p:130:p, space :p:85:p}}"
+			"$verticalGroup": "par l {seq t {space ::38:x, comp btnExit:::p:41:p, space :p:24:p}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnExit"
+				"text": "Salir"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnExitMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "btnExitKeyPressed", true ) )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menubTables"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuClients"
+					"text": "Clientes"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuClientsMouseClicked", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuProducts"
+					"text": "Productos"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuProductsMouseClicked", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuSuppliers"
+					"text": "Proveedores"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuSuppliersMouseClicked", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menuClientProduct"
+					"text": "Cliente - Producto"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuClientProductMouseClicked", true ) )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 320, 160 )
+		} )
+	}
+}

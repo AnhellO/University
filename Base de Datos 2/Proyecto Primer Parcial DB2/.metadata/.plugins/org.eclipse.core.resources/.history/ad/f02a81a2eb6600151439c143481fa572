@@ -1,0 +1,49 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_60" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {space :0:554:x};par l {seq {space :0:0:x, comp this2:::p::p, space :0:0:x}}"
+			"$verticalGroup": "par l {space :0:379:x};par l {seq {space :0:0:x, comp this2:::p::p, space :0:0:x}}"
+		} ) {
+			name: "frm1"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:85:p, par t:::p {seq {comp btnNext:::p:130:p, space :::x, comp btnExit:::p:130:p}, par l {seq {comp lblPass:::p:108:p, space s:::p, comp pswPass:::p:214:p}, seq l {comp lblUser:::p:108:p, space s:::p, comp txtUser:::p:214:p}}}, space ::95:x}}"
+				"$verticalGroup": "par l {seq l {space :p:83:p, par b {comp lblUser::b:p:38:p, comp txtUser::b:p:38:p}, space :p:29:p, par b {comp lblPass::b:p:38:p, comp pswPass::b:p:38:p}, space ::35:x, par b {comp btnNext::b:p:41:p, comp btnExit::b:p:41:p}, space :p:41:p}}"
+			} ) {
+				name: "this2"
+				"foreground": sfield java.awt.Color lightGray
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblUser"
+					"text": "Usuario:"
+					"font": &Font0 new java.awt.Font( "Tahoma", 1, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblPass"
+					"text": "Contraseña:"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtUser"
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "pswPass"
+					"echoChar": '*'
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnNext"
+					"text": "Ingresar"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnExit"
+					"text": "Salir"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnExitMouseClicked", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 570, 415 )
+		} )
+	}
+}

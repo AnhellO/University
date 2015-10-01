@@ -1,0 +1,353 @@
+/*
+ * Created by JFormDesigner on Tue Sep 29 17:20:48 CDT 2015
+ */
+
+package app;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.sql.Date;
+
+import javax.swing.*;
+
+import cnx.Conexion;
+
+/**
+ * @author Angel Jaime
+ */
+public class Clientes extends JFrame {
+	public Clientes() {
+		initComponents();
+		this.setTitle("Clientes");
+	}
+	
+	private void cleanTxt() {
+		txtCode.setText("");
+		txtName.setText("");
+		txtSurname.setText("");
+		txtAddress.setText("");
+		txtDate.setText("");
+	}
+	
+	private void btnExitMouseClicked(MouseEvent e) {
+		this.dispose();
+	}
+
+	private void btnBackMouseClicked(MouseEvent e) {
+		ChooseTable ch = new ChooseTable();
+		ch.setVisible(true);
+		this.dispose();
+	}
+
+	private void btnBackKeyPressed(KeyEvent e) {
+		ChooseTable ch = new ChooseTable();
+		ch.setVisible(true);
+		this.dispose();
+	}
+
+	private void btnExitKeyPressed(KeyEvent e) {
+		this.dispose();
+	}
+
+	private void btnShowMouseClicked(MouseEvent e) {
+		int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del cliente: "));
+		boolean flag = false;
+		try {
+			Conexion c = new Conexion();
+			Statement st = c.getConexion().createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM BD2.Cliente");
+			while(rs.next()) {
+				if(rs.getInt(1) == id) {
+					flag = true;
+					txtCode.setText(rs.getString(1));
+					txtName.setText(rs.getString(2));
+					txtSurname.setText(rs.getString(3));
+					txtAddress.setText(rs.getString(4));
+					txtDate.setText(rs.getString(5).split(" ")[0]);
+				}
+			}
+			if(!flag) {
+				JOptionPane.showMessageDialog(null, "No se encontró el registro!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Consulta exitosa!");
+			}
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "No se pudo consultar a la Base de Datos!");
+			e1.printStackTrace();
+		}
+	}
+
+	private void btnAddMouseClicked(MouseEvent e) {
+		try {
+			String code = txtCode.getText();
+			while(code.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "El campo de código no pueden estar vacío!. Intente de nuevo");
+				return;
+			}
+			JOptionPane.showMessageDialog(null, "Inserte la fecha de nacimiento en formato dd/mm/yyyy");
+			Conexion c = new Conexion();
+			Statement st = c.getConexion().createStatement();
+			String insert = "INSERT INTO BD2.Cliente VALUES (" + code + ", '" + txtName.getText() + "', '" + 
+							txtSurname.getText() + "', '" + txtAddress.getText() + "', TO_DATE('" + txtDate.getText() + "', 'dd/mm/yyyy'))";
+			//System.out.println(insert);
+			st.executeUpdate(insert);
+			JOptionPane.showMessageDialog(null, "Adición exitosa!");
+			cleanTxt();
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "No se pudo insertar nuevos registros a la Base de Datos!. Intente de nuevo");
+			e1.printStackTrace();
+		}
+	}
+
+	private void btnCleanMouseClicked(MouseEvent e) {
+		cleanTxt();
+	}
+
+	private void btnUpdMouseClicked(MouseEvent e) {
+		try {
+			String upd;
+			while(txtCode.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "El campo de código no pueden estar vacío!. Intente de nuevo");
+				return;
+			}
+			upd = "UPDATE BD2.Cliente SET IdCliente = ?, Nombre = ?, Apellido = ?, Direccion = ?, Fecha_Nacimiento = ? WHERE IdCliente = ?";
+			Conexion c = new Conexion();
+			PreparedStatement st = c.getConexion().prepareStatement(upd);
+			st.setInt(1, Integer.parseInt(txtCode.getText()));
+			st.setString(2, txtName.getText());
+			st.setString(3, txtSurname.getText());
+			st.setString(4, txtAddress.getText());
+			DateFormat df = DateFormat.getDateInstance(2);
+			Date d = df.parse(txtDate.getText());
+			st.setString(5, "TO_DATE('" + txtDate.getText() + "', 'dd/mm/yyyy'");
+			st.setInt(6, Integer.parseInt(txtCode.getText()));
+			System.out.println(upd);
+			st.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Actualización exitosa!");
+			cleanTxt();
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "No se pudo actualizar los registros de la Base de Datos!. Intente de nuevo");
+			e1.printStackTrace();
+		}
+	}
+
+	private void initComponents() {
+		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// Generated using JFormDesigner Evaluation license - Angel Jaime
+		btnExit = new JButton();
+		lblCode = new JLabel();
+		lblName = new JLabel();
+		lblSurname = new JLabel();
+		lblAddress = new JLabel();
+		lblDate = new JLabel();
+		txtCode = new JTextField();
+		txtName = new JTextField();
+		txtSurname = new JTextField();
+		txtAddress = new JTextField();
+		txtDate = new JTextField();
+		btnBack = new JButton();
+		btnShow = new JButton();
+		btnAdd = new JButton();
+		btnDel = new JButton();
+		btnUpd = new JButton();
+		btnClean = new JButton();
+
+		//======== this ========
+		setResizable(false);
+		Container contentPane = getContentPane();
+
+		//---- btnExit ----
+		btnExit.setText("Salir");
+		btnExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnExitMouseClicked(e);
+			}
+		});
+		btnExit.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				btnExitKeyPressed(e);
+			}
+		});
+
+		//---- lblCode ----
+		lblCode.setText("C\u00f3digo Cliente:");
+		lblCode.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- lblName ----
+		lblName.setText("Nombre:");
+		lblName.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- lblSurname ----
+		lblSurname.setText("Apellidos:");
+		lblSurname.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- lblAddress ----
+		lblAddress.setText("Direcci\u00f3n:");
+		lblAddress.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- lblDate ----
+		lblDate.setText("Fecha de Nacimiento:");
+		lblDate.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- btnBack ----
+		btnBack.setText("Volver Al Men\u00fa");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnBackMouseClicked(e);
+			}
+		});
+		btnBack.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				btnBackKeyPressed(e);
+			}
+		});
+
+		//---- btnShow ----
+		btnShow.setText("Consultar");
+		btnShow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnShowMouseClicked(e);
+			}
+		});
+
+		//---- btnAdd ----
+		btnAdd.setText("Agregar");
+		btnAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnAddMouseClicked(e);
+			}
+		});
+
+		//---- btnDel ----
+		btnDel.setText("Borrar");
+
+		//---- btnUpd ----
+		btnUpd.setText("Actualizar");
+		btnUpd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnUpdMouseClicked(e);
+			}
+		});
+
+		//---- btnClean ----
+		btnClean.setText("Limpiar");
+		btnClean.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnCleanMouseClicked(e);
+			}
+		});
+
+		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPane.setLayout(contentPaneLayout);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+					.addGap(19, 19, 19)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(lblDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblSurname, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblCode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(txtSurname, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+								.addComponent(txtAddress, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+								.addComponent(txtDate, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+								.addComponent(txtName, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+								.addComponent(txtCode, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addGap(31, 31, 31)
+							.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addGap(32, 32, 32)
+							.addComponent(btnClean, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addComponent(btnShow, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnDel, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnUpd, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+					.addGap(18, 18, 18))
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(contentPaneLayout.createSequentialGroup()
+					.addGap(21, 21, 21)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addComponent(btnShow, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+							.addGap(28, 28, 28)
+							.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+							.addGap(33, 33, 33)
+							.addComponent(btnDel, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+							.addGap(33, 33, 33)
+							.addComponent(btnUpd, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(lblCode, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtCode, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtName, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(lblSurname, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtSurname, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(lblAddress, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtAddress, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+							.addGap(18, 18, 18)
+							.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnClean, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
+		pack();
+		setLocationRelativeTo(getOwner());
+		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+	}
+
+	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// Generated using JFormDesigner Evaluation license - Angel Jaime
+	private JButton btnExit;
+	private JLabel lblCode;
+	private JLabel lblName;
+	private JLabel lblSurname;
+	private JLabel lblAddress;
+	private JLabel lblDate;
+	private JTextField txtCode;
+	private JTextField txtName;
+	private JTextField txtSurname;
+	private JTextField txtAddress;
+	private JTextField txtDate;
+	private JButton btnBack;
+	private JButton btnShow;
+	private JButton btnAdd;
+	private JButton btnDel;
+	private JButton btnUpd;
+	private JButton btnClean;
+	// JFormDesigner - End of variables declaration  //GEN-END:variables
+}

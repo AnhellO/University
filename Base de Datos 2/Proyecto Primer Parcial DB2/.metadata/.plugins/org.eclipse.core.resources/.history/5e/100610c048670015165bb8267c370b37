@@ -1,0 +1,94 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_60" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :p:19:p, par l {seq {par l:::p {comp lblDate::l:::x, comp lblAddress::l:::x, comp lblSurname::l:::x, comp lblName::l:::x, comp lblCode::l:::x}, space :::p, par l:::p {comp txtSurname::::306:x, comp txtAddress::::306:x, comp txtDate::::306:x, comp txtName::l::306:x, comp txtCode::::306:x}}, seq l {comp btnBack:::p:130:p, space :p:31:p, comp btnExit:::p:130:p, space :p:32:p, comp btnClean:::p:130:p}}, space ::14:x, par l {comp btnShow:::p:130:p, comp btnAdd:::p:130:p, comp btnDel:::p:130:p, comp btnUpd:::p:130:p}, space :p:18:p}}"
+			"$verticalGroup": "par l {seq l {space :p:21:p, par l {seq {comp btnShow:::p:41:p, space :28:28:p, comp btnAdd:::p:41:p, space :33:33:p, comp btnDel:::p:41:p, space :33:33:p, comp btnUpd:::p:41:p}, seq {par b {comp lblCode::b:p:38:p, comp txtCode::b:p:38:p}, space u:::p, par b {comp lblName::b:p:38:p, comp txtName::b:p:38:p}, space u:::p, par b {comp lblSurname::b:p:38:p, comp txtSurname::b:p:38:p}, space u:::p, par b {comp lblAddress::b:p:38:p, comp txtAddress::b:p:38:p}, space u:::p, par b {comp lblDate::b:p:38:p, comp txtDate::b:p:38:p}, space s:::p, par b {comp btnBack::b:p:41:p, comp btnClean::b:p:41:p, comp btnExit::b:p:41:p}}}, space ::20:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnExit"
+				"text": "Salir"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnExitMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "btnExitKeyPressed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblCode"
+				"text": "Código Cliente:"
+				"font": &Font0 new java.awt.Font( "Tahoma", 1, 12 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "Nombre:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblSurname"
+				"text": "Apellidos:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAddress"
+				"text": "Dirección:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblDate"
+				"text": "Fecha de Nacimiento:"
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtCode"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtName"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSurname"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtAddress"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtDate"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnBack"
+				"text": "Volver Al Menú"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnBackMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "btnBackKeyPressed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnShow"
+				"text": "Consultar"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnShowMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAdd"
+				"text": "Agregar"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnAddMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnDel"
+				"text": "Borrar"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnDelMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnUpd"
+				"text": "Actualizar"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnUpdMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnClean"
+				"text": "Limpiar"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnCleanMouseClicked", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 650, 375 )
+		} )
+	}
+}

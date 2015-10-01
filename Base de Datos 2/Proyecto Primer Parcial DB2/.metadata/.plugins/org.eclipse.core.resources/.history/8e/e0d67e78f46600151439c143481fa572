@@ -1,0 +1,47 @@
+/*
+ * Created by JFormDesigner on Tue Sep 29 16:51:04 CDT 2015
+ */
+
+package app;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+
+/**
+ * @author Angel Jaime
+ */
+public class ChooseTable extends JFrame {
+	public ChooseTable() {
+		initComponents();
+	}
+
+	private void initComponents() {
+		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// Generated using JFormDesigner Evaluation license - Angel Jaime
+		menuTables = new JMenuBar();
+
+		//======== this ========
+		Container contentPane = getContentPane();
+		setJMenuBar(menuTables);
+
+		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPane.setLayout(contentPaneLayout);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGap(0, 494, Short.MAX_VALUE)
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGap(0, 322, Short.MAX_VALUE)
+		);
+		pack();
+		setLocationRelativeTo(getOwner());
+		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+	}
+
+	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// Generated using JFormDesigner Evaluation license - Angel Jaime
+	private JMenuBar menuTables;
+	// JFormDesigner - End of variables declaration  //GEN-END:variables
+}

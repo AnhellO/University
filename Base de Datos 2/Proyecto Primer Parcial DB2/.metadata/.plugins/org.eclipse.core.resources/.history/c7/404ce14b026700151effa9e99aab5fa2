@@ -1,0 +1,44 @@
+/*
+ * Created by JFormDesigner on Tue Sep 29 18:31:08 CDT 2015
+ */
+
+package app;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+
+/**
+ * @author Angel Jaime
+ */
+public class Productos extends JFrame {
+	public Productos() {
+		initComponents();
+	}
+
+	private void initComponents() {
+		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// Generated using JFormDesigner Evaluation license - Angel Jaime
+
+		//======== this ========
+		Container contentPane = getContentPane();
+
+		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPane.setLayout(contentPaneLayout);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGap(0, 400, Short.MAX_VALUE)
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGap(0, 300, Short.MAX_VALUE)
+		);
+		pack();
+		setLocationRelativeTo(getOwner());
+		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+	}
+
+	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// Generated using JFormDesigner Evaluation license - Angel Jaime
+	// JFormDesigner - End of variables declaration  //GEN-END:variables
+}

@@ -1,0 +1,9 @@
+package app;
+
+class Main {
+	public static void main(String [] args) {
+		Admin test = new Admin();
+		System.out.println(test.isVisible());
+		
+	}
+}

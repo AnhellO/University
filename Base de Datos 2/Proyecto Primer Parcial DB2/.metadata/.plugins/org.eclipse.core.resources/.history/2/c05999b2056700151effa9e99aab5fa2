@@ -1,0 +1,123 @@
+/*
+ * Created by JFormDesigner on Tue Sep 29 18:50:56 CDT 2015
+ */
+
+package app;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+
+/**
+ * @author Angel Jaime
+ */
+public class ClienteProducto extends JFrame {
+	public ClienteProducto() {
+		initComponents();
+		this.setTitle("Clientes - Productos");
+	}
+
+	private void btnBackMouseClicked(MouseEvent e) {
+		ChooseTable ch = new ChooseTable();
+		ch.setVisible(true);
+		this.dispose();
+	}
+
+	private void btnExitMouseClicked(MouseEvent e) {
+		this.dispose();
+	}
+
+	private void initComponents() {
+		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// Generated using JFormDesigner Evaluation license - Angel Jaime
+		lblCodeClient = new JLabel();
+		txtCodeClient = new JTextField();
+		lblCodeProd = new JLabel();
+		txtCodeProd = new JTextField();
+		btnBack = new JButton();
+		btnExit = new JButton();
+
+		//======== this ========
+		setResizable(false);
+		Container contentPane = getContentPane();
+
+		//---- lblCodeClient ----
+		lblCodeClient.setText("C\u00f3digo Cliente:");
+		lblCodeClient.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- lblCodeProd ----
+		lblCodeProd.setText("C\u00f3difo Producto:");
+		lblCodeProd.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+		//---- btnBack ----
+		btnBack.setText("Volver Al Men\u00fa");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnBackMouseClicked(e);
+			}
+		});
+
+		//---- btnExit ----
+		btnExit.setText("Salir");
+		btnExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnExitMouseClicked(e);
+			}
+		});
+
+		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPane.setLayout(contentPaneLayout);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+					.addContainerGap(25, Short.MAX_VALUE)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addComponent(lblCodeClient, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(txtCodeClient, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+							.addGap(178, 178, 178)
+							.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+						.addGroup(contentPaneLayout.createSequentialGroup()
+							.addComponent(lblCodeProd, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(txtCodeProd, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE)))
+					.addGap(21, 21, 21))
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+					.addContainerGap(53, Short.MAX_VALUE)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addComponent(lblCodeClient, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCodeClient, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+					.addGap(63, 63, 63)
+					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(lblCodeProd, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtCodeProd, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+					.addGap(94, 94, 94)
+					.addGroup(contentPaneLayout.createParallelGroup()
+						.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		pack();
+		setLocationRelativeTo(getOwner());
+		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+	}
+
+	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// Generated using JFormDesigner Evaluation license - Angel Jaime
+	private JLabel lblCodeClient;
+	private JTextField txtCodeClient;
+	private JLabel lblCodeProd;
+	private JTextField txtCodeProd;
+	private JButton btnBack;
+	private JButton btnExit;
+	// JFormDesigner - End of variables declaration  //GEN-END:variables
+}
