@@ -17,6 +17,8 @@ import cnx.Conexion;
 
 /**
  * @author Angel Jaime
+ * @version 2.0.0
+ * @date 07/11/2015
  */
 public class Clientes extends JFrame {
 	public Clientes() {
@@ -63,6 +65,7 @@ public class Clientes extends JFrame {
 		try {
 			Conexion c = new Conexion();
 			Statement st = c.getConexion().createStatement();
+			c.getConexion().setSavepoint();
 			ResultSet rs = st.executeQuery("SELECT * FROM BD2.Cliente");
 			while(rs.next()) {
 				if(rs.getInt(1) == id) {
@@ -76,9 +79,12 @@ public class Clientes extends JFrame {
 			}
 			if(!flag) {
 				JOptionPane.showMessageDialog(null, "No se encontró el registro!");
+				c.getConexion().rollback();
 			} else {
 				JOptionPane.showMessageDialog(null, "Consulta exitosa!");
+				c.getConexion().commit();
 			}
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo consultar a la Base de Datos!");
@@ -110,11 +116,14 @@ public class Clientes extends JFrame {
 			}
 			Conexion c = new Conexion();
 			Statement st = c.getConexion().createStatement();
+			c.getConexion().setSavepoint();
 			String insert = "INSERT INTO BD2.Cliente VALUES (" + code + ", '" + name + "', '" + 
 							surName + "', '" + address + "', TO_DATE('" + date + "', 'dd/mm/yyyy'))";
 			//System.out.println(insert);
 			st.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Adición exitosa!");
+			c.getConexion().commit();
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo insertar nuevos registros a la Base de Datos!. Intente de nuevo");
@@ -152,6 +161,7 @@ public class Clientes extends JFrame {
 			upd = "UPDATE BD2.Cliente SET Nombre = ?, Apellido = ?, Direccion = ?, Fecha_Nacimiento = TO_DATE(?, 'dd/mm/yyyy') WHERE IdCliente = ?";
 			Conexion c = new Conexion();
 			PreparedStatement st = c.getConexion().prepareStatement(upd);
+			c.getConexion().setSavepoint();
 			st.setString(1, name);
 			st.setString(2, surName);
 			st.setString(3, address);
@@ -160,6 +170,8 @@ public class Clientes extends JFrame {
 			//System.out.println(upd);
 			st.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Actualización exitosa!");
+			c.getConexion().commit();
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo actualizar los registros de la Base de Datos!. Intente de nuevo");
@@ -178,10 +190,13 @@ public class Clientes extends JFrame {
 			del = "DELETE BD2.Cliente WHERE IdCliente = ?";
 			Conexion c = new Conexion();
 			PreparedStatement st = c.getConexion().prepareStatement(del);
+			c.getConexion().setSavepoint();
 			st.setInt(1, id);
 			//System.out.println(upd);
 			st.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Eliminación exitosa!");
+			c.getConexion().commit();
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro de la Base de Datos!. Intente de nuevo");

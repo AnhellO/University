@@ -1,9 +1,0 @@
-package app;
-
-class Main {
-	public static void main(String [] args) {
-		In test = new In();
-		System.out.println(test.isVisible());
-		test.setVisible(true);
-	}
-}

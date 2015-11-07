@@ -2,7 +2,11 @@ package cnx;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/*
+ * @author Angel Santiago Jaime Zavala
+ * @version 2.0.0
+ * @date 07/11/2015
+ */
 public class Conexion {
 	private Connection conexion = null;
 	
@@ -19,7 +23,7 @@ public class Conexion {
 			conexion = DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521:XE", "system",
 					"oracle");
-
+			conexion.setAutoCommit(false); //Desactivamos AutoCommit de la BD 
 		} catch (SQLException e) {
 			System.out.println("Conexión fallada. Verificar Consola");
 			e.printStackTrace();

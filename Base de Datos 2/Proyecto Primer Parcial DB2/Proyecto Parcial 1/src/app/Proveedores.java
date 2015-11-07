@@ -16,6 +16,8 @@ import java.sql.Statement;
 import cnx.Conexion;
 /**
  * @author Angel Jaime
+ * @version 2.0.0
+ * @date 07/11/2015
  */
 public class Proveedores extends JFrame {
 	public Proveedores() {
@@ -52,9 +54,11 @@ public class Proveedores extends JFrame {
 	private void btnShowMouseClicked(MouseEvent e) {
 		int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el código del proveedor: "));
 		boolean flag = false;
+		Conexion c = null;
 		try {
-			Conexion c = new Conexion();
+			c = new Conexion();
 			Statement st = c.getConexion().createStatement();
+			c.getConexion().setSavepoint(); //Creamos savepoint previo a la operación en la BD
 			ResultSet rs = st.executeQuery("SELECT * FROM BD2.Proveedor");
 			while(rs.next()) {
 				if(rs.getInt(1) == id) {
@@ -66,9 +70,12 @@ public class Proveedores extends JFrame {
 			}
 			if(!flag) {
 				JOptionPane.showMessageDialog(null, "No se encontró el registro!");
+				c.getConexion().commit(); //Commit si la transacción fue exitosa
 			} else {
 				JOptionPane.showMessageDialog(null, "Consulta exitosa!");
+				c.getConexion().rollback(); //Rollback en caso contrario
 			}
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo consultar a la Base de Datos!");
@@ -96,10 +103,13 @@ public class Proveedores extends JFrame {
 			}
 			Conexion c = new Conexion();
 			Statement st = c.getConexion().createStatement();
+			c.getConexion().setSavepoint(); //Creamos savepoint previo a la operación en la BD
 			String insert = "INSERT INTO BD2.Proveedor VALUES (" + code + ", '" + name + "', '" + address + "')";
 			//System.out.println(insert);
 			st.executeUpdate(insert);
 			JOptionPane.showMessageDialog(null, "Adición exitosa!");
+			c.getConexion().commit(); //Commit si la transacción fue exitosa
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo insertar nuevos registros a la Base de Datos!. Intente de nuevo");
@@ -125,12 +135,15 @@ public class Proveedores extends JFrame {
 			upd = "UPDATE BD2.Proveedor SET Nombre = ?, Direccion = ? WHERE IdProveedor = ?";
 			Conexion c = new Conexion();
 			PreparedStatement st = c.getConexion().prepareStatement(upd);
+			c.getConexion().setSavepoint(); //Creamos savepoint previo a la operación en la BD
 			st.setString(1, name);
 			st.setString(2, address);
 			st.setInt(3, Integer.parseInt(code));
 			//System.out.println(upd);
 			st.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Actualización exitosa!");
+			c.getConexion().commit(); //Commit si la transacción fue exitosa
+			st.close();
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo actualizar los registros de la Base de Datos!. Intente de nuevo");
@@ -149,10 +162,12 @@ public class Proveedores extends JFrame {
 			del = "DELETE BD2.Proveedor WHERE IdProveedor = ?";
 			Conexion c = new Conexion();
 			PreparedStatement st = c.getConexion().prepareStatement(del);
+			c.getConexion().setSavepoint(); //Creamos savepoint previo a la operación en la BD
 			st.setInt(1, id);
 			//System.out.println(upd);
 			st.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Eliminación exitosa!");
+			c.getConexion().commit(); //Commit si la transacción fue exitosa
 			c.getConexion().close();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro de la Base de Datos!. Intente de nuevo");
